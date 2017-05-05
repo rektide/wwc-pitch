@@ -4,22 +4,57 @@
 </head>
 <body>
 
+<style type="text/css">
+body{
+	background-image: url("washington.jpg");
+	background-size: 100% auto;
+}
+section, header{
+	background-color: rgba(180, 180, 180, 0.7);
+	width: auto;
+	margin: 3rem;
+	padding: 1.854rem;
+	text-align: center;
+	font-family: monospace;
+}
+#header{}
+#submit{}
+#contact{}
+</style>
+
+
 <header id="header">
 <h1>Washington Wander Code</h1>
 <h2>Outdoor Parks + Laptops + Geeks in DC</h2>
+<p>
+	Washington Wander Code is a meetup for geeks to work on projects at, from DC's many fantastic outdoor parks.<br/>
+	Come to the great locations you know and love or wanting to find cool new locations,<br/>
+	and work on the exciting wanderful and wonderful projects that drive you.</p>
 </header>
-<p>Washington Wander Code is a meetup for geeks to work on projects at, from DC's many fantastic outdoor parks. Come to the great locations you know and love or wanting to find cool new locations, and work on the exciting wanderful and wonderful projects that drive you.</p>
 
 <section id="submit">
 <form action="mailinglist" method="get">
-<p>Get notified when Washington Wander Code Launches! Email:</p>
-<input name="email" type="email"></input>
+<h1>Get onboard!<h1>
+<label for="email">
+	<h2>Email:</h2>
+	<input name="email" id="email" type="email" value="(email)"></input>
+</label>
+<input type="submit" value="Get Wandering!"></input>
 </form>
+<p>
+	We will never give this data away!<br/>
+	You will get notified of the first two events ONLY!
+</p>
 </section>
 
 <section id="contact">
 <p>Contact: jaunty AT eldergods.com or <a href="https://twitter.com/rektide">@rektide</a>.</p>
 </section>
+
+<script type="text/javascript">
+var email= document.getElementById("email")
+email.select()
+</script>
 
 </body>
 </html>
