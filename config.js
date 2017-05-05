@@ -1,7 +1,16 @@
 #!/usr/bin/env node
 
+function filterEmpty(o){
+	for( var i in o){
+		if( o[ i]=== undefined){
+			delete o[ i]
+		}
+	}
+	return o
+}
+
 export const prefix= function(){
-	return process.envs.WWC_PITCH_PREFIX|| "WWC_PITCH_:WWC_"
+	return process.env.WWC_PITCH_PREFIX|| "WWC_PITCH:WWC"
 }
 
 export const envs= function(prefixes){
@@ -13,20 +22,22 @@ export const envs= function(prefixes){
 		.map( prefix=> env(prefix))
 	prefixes.reverse()
 	prefixes.unshift({})
-	return Object.assign.apply( Object, prefixes)
+	var composed= Object.assign.apply( Object, prefixes)
+	return filterEmpty( composed)
 }
 
 export const env= function(prefix){
 	function get(name){
-		return process.env[ prefix+ "_"+ name.toUpperCase()]
+		var key= prefix+ "_"+ name.toUpperCase()
+		return process.env[ key]
 	}
-	return {
+	return filterEmpty({
 		beaconUrl: get( "beacon_url"),
 		beaconName: get( "beacon_name"),
 		txPowerLevel: get( "beacon_tx_power_level"),
 		tlmCount: get( "beacon_tlm_count"),
 		tlmPeriod: get("beacon_tlm_period")
-	}
+	})
 }
 
 export const defaults= function(){
@@ -36,12 +47,8 @@ export const defaults= function(){
 }
 
 export const all = async function(){
-	const [envs, defaults]= await Promise.all([envs(), defaults()])
-	return Object.assign({}, envs, defaults)
-	//return Promise
-	//	.all([envs(), defaults()])
-	//	.then([ envs, defaults]=>
-	//return envs().then( envs=> Object.assign({}, defaults, envs))
+	const [_envs, _defaults]= await Promise.all([envs(), defaults()])
+	return Object.assign({}, _envs, _defaults)
 }
 
 const singleton = all()
