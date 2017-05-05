@@ -1,0 +1,24 @@
+{
+	"name": "wwc-pitch",
+	"version": "1.0.0",
+	"description": "",
+	"main": "wwc-pitch.js",
+	"scripts": {
+		"build": "builder run build:babel:node",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://archive.voodoowarez.com/wwc-pitch"
+	},
+	"keywords": [],
+	"author": "rektide de la faye",
+	"license": "X11",
+	"dependencies": {
+		"eddystone-beacon": "^1.0.7"
+	},
+	"devDependencies": {
+		"builder": "^3.2.2",
+		"builder-rekon-babel": "^1.0.0"
+	}
+}
